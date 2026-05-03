@@ -1,0 +1,11 @@
+﻿Step,Rows Removed,Reason (VI),Reason (EN)
+1 – Drop missing ACCOUNT_ID,29,"Không có mã tài khoản → không xác định được chủ thể, vô dụng cho mô hình",No account ID → record is unidentifiable; cannot be used in modeling
+2 – Drop missing NEXT_MONTH_DEFAULT,27,Không có nhãn mục tiêu → không thể dùng cho huấn luyện có giám sát,Missing target label → cannot be used in supervised learning
+3 – Impute GENDER (mode),0,"GENDER thiếu ~10% → điền bằng giá trị phổ biến nhất (""F"") thay vì xóa để giữ dữ liệu","GENDER missing ~10% → filled with mode (""F"") to retain records; deletion would cause significant data loss"
+4 – Impute EDUCATION_LEVEL (mode),0,"EDUCATION_LEVEL thiếu <1% → điền bằng mode (""University"")","EDUCATION_LEVEL missing <1% → filled with mode (""University"")"
+5 – Impute MARITAL_STATUS (mode),0,"MARITAL_STATUS thiếu <0.2% → điền bằng mode (""Single"")","MARITAL_STATUS missing <0.2% → filled with mode (""Single"")"
+6 – Impute BILL/PAYMENT amount columns (median),0,Các cột số tiền thiếu <0.1% → điền trung vị để tránh bị kéo lệch bởi giá trị ngoại lệ,Financial amount columns missing <0.1% → median imputation is robust to outliers
+7a – Encode GENDER (binary),0,"GENDER là biến nhị phân → mã hóa F=0, M=1 (binary encoding)","GENDER is binary → F=0, M=1 binary encoding; no dummy variable needed"
+7b – Encode EDUCATION_LEVEL (ordinal),0,"EDUCATION_LEVEL có thứ tự bậc học → dùng Ordinal Encoding: PrimarySchool=0, HighSchool=1, University=2, Graduate=3, Others=4",EDUCATION_LEVEL is ordinal (degree hierarchy) → Ordinal Encoding preserves order
+7c – Encode MARITAL_STATUS (label),0,"MARITAL_STATUS có 3 lớp không có thứ tự → Label Encoding: Single=0, Married=1, Other=2",MARITAL_STATUS has 3 nominal categories → Label Encoding for simplicity; treat as categorical in tree-based models
+7d – Encode SUPPLEMENTARY_CARD_HOLDER (binary),0,"SUPPLEMENTARY_CARD_HOLDER là biến nhị phân → No=0, Yes=1","Binary flag → No=0, Yes=1"
